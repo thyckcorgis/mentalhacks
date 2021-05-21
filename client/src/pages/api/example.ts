@@ -1,9 +1,10 @@
+import { NextApiHandler } from "next";
 import { verifyIdToken } from "next-firebase-auth";
 import initAuth from "../../util/initAuth";
 
 initAuth();
 
-const handler = async (req, res) => {
+const handler: NextApiHandler = async (req, res) => {
   if (!(req.headers && req.headers.authorization)) {
     return res
       .status(400)
