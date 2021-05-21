@@ -21,3 +21,5 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+secure-connect-*
