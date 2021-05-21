@@ -1,7 +1,11 @@
-import { AppProps } from "next/dist/next-server/lib/router/router";
+import React from "react";
 import "../styles/globals.css";
+import initAuth from "../util/initAuth";
 
-function MyApp({ Component, pageProps }: AppProps) {
+initAuth();
+
+function MyApp({ Component, pageProps }) {
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Component {...pageProps} />;
 }
 
