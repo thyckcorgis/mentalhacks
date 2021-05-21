@@ -16,6 +16,9 @@ const firebaseAuthConfig = {
       provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
       requireDisplayName: true,
     },
+    {
+      provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    },
   ],
   signInSuccessUrl: "/",
   credentialHelper: "none",
@@ -40,10 +43,7 @@ const FirebaseAuth = () => {
   return (
     <div>
       {renderAuth ? (
-        <StyledFirebaseAuth
-          uiConfig={firebaseAuthConfig}
-          firebaseAuth={firebase.auth()}
-        />
+        <StyledFirebaseAuth uiConfig={firebaseAuthConfig} firebaseAuth={firebase.auth()} />
       ) : null}
     </div>
   );
