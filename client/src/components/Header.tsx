@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 
 const nfaDependencyVersion =
-  require("../package.json").dependencies["next-firebase-auth"];
-const nextDependencyVersion = require("../package.json").dependencies.next;
+  require("../../package.json").dependencies["next-firebase-auth"];
+const nextDependencyVersion = require("../../package.json").dependencies.next;
 
 const styles = {
   container: {

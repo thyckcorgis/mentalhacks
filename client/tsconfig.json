@@ -19,7 +19,8 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/_app.tx",
-    "pages/index.tsc"
+    "pages/index.tsc",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }
