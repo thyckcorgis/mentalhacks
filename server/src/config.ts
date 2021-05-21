@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 
-config({ path: "../.env.local" });
+config({ path: "../client/.env.local" });
 
 export const {
   SECURE_CONNECT_PATH = "",
