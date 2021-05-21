@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/globals.css";
+import "tailwindcss/tailwind.css";
 import initAuth from "../util/initAuth";
 
 initAuth();
