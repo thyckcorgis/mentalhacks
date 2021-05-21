@@ -7,7 +7,6 @@ import {
 } from "next-firebase-auth";
 import Header from "../components/Header";
 import DemoPageLinks from "../components/DemoPageLinks";
-import getAbsoluteURL from "../util/getAbsoluteURL";
 
 const styles = {
   content: {
@@ -19,10 +18,10 @@ const styles = {
 };
 
 interface DemoProps {
-  favoriteColor: string;
+  message: string;
 }
 
-const Demo: FC<DemoProps> = ({ favoriteColor }) => {
+const Demo: FC<DemoProps> = ({ message }) => {
   const AuthUser = useAuthUser();
   return (
     <div>
@@ -34,7 +33,7 @@ const Demo: FC<DemoProps> = ({ favoriteColor }) => {
             This page requires authentication. It will do a server-side redirect
             (307) to the login page if the auth cookies are not set.
           </p>
-          <p>Your favorite color is: {favoriteColor}</p>
+          <p>Message from API: {message}</p>
         </div>
         <DemoPageLinks />
       </div>
@@ -44,10 +43,10 @@ const Demo: FC<DemoProps> = ({ favoriteColor }) => {
 
 export const getServerSideProps = withAuthUserTokenSSR({
   whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
-})(async ({ AuthUser, req }) => {
+})(async ({ AuthUser }) => {
   // Optionally, get other props.
   const token = await AuthUser.getIdToken();
-  const endpoint = getAbsoluteURL("/api/example", req);
+  const endpoint = "http://localhost:5000";
   // console.log(await verifyIdToken(token));
 
   const response = await fetch(endpoint, {
@@ -66,7 +65,7 @@ export const getServerSideProps = withAuthUserTokenSSR({
   }
   return {
     props: {
-      favoriteColor: data.favoriteColor,
+      message: data.message,
     },
   };
 });
