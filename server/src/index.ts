@@ -12,6 +12,7 @@ app.get("/", async (req, res) => {
   try {
     const token = req.headers["authorization"];
     const user = await getUser(token as string);
+    console.log(user.uid);
     res.json({ message: `Hello, you are signed in as ${user.email}` });
   } catch (err) {
     console.log(err);
