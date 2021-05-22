@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useAuthUser, withAuthUser, AuthAction, withAuthUserTokenSSR } from "next-firebase-auth";
 import Header from "../components/Header";
 import LinearBackground from "../components/LinearBackground";
@@ -7,13 +7,64 @@ interface DashboardProps {
   name: string;
 }
 
+enum Tab {
+  ALL,
+  EXAMS,
+  ASSES,
+}
+
+const All: FC = () => {
+  return <div>All things</div>;
+};
+
+const Exams: FC = () => {
+  return <div>Exams</div>;
+};
+
+const Assignments: FC = () => {
+  return <div>Assignments</div>;
+};
+
+interface CurrentTabProps {
+  currentTab: Tab;
+}
+
+const CurrentTab: FC<CurrentTabProps> = ({ currentTab }) => {
+  switch (currentTab) {
+    case Tab.ALL:
+      return <All />;
+    case Tab.EXAMS:
+      return <Exams />;
+    case Tab.ASSES:
+      return <Assignments />;
+  }
+};
+
+const tabs: [string, Tab][] = [
+  ["All", Tab.ALL],
+  ["Exams", Tab.EXAMS],
+  ["Assignments", Tab.ASSES],
+];
+
 const Dashboard: FC<DashboardProps> = ({ name }) => {
   const AuthUser = useAuthUser();
+  const [currentTab, setCurrentTab] = useState<Tab>(Tab.ALL);
+  const changeTab = (tab: Tab) => {
+    if (tab === currentTab) return;
+    setCurrentTab(tab);
+  };
   return (
     <LinearBackground colours={["from-darkGreen", "to-medGreen"]}>
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
       <div className="flex flex-col content-center h-screen">
         <p className="py-12 text-sans text-xl text-center text-yellow">Welcome, {name}</p>
+        <div>
+          {tabs.map(([name, tab]) => (
+            <button onClick={() => changeTab(tab)}>{name}</button>
+          ))}
+        </div>
+
+        <CurrentTab currentTab={currentTab} />
       </div>
     </LinearBackground>
   );
