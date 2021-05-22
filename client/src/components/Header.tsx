@@ -25,7 +25,7 @@ const Header = ({ email, signOut }) => (
       <>
         <p>Signed in as {email}</p>
         <button
-          className="bg-yellow px-2 py-1 rounded-full"
+          className="bg-yellow px-2 py-1 rounded-full transition duration-300 ease-in-out transform hover:scale-105 hover:bg-hoverYellow text-medGreen"
           type="button"
           onClick={() => {
             signOut();

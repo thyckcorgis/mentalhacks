@@ -27,22 +27,30 @@ const questions: QuestionRow[] = [
 const Question: FC<Props> = ({ question }) => {
   return (
     <>
-      <div id={`mc-question-${question[0]}`}>{question[1]}</div>
-      <div role={`group-${question[0]}`} aria-labelledby={`radio-group-${question[0]}`}>
-        {/* You should group each radio into the same name if you want them to be 
+      <div className="flex content-center justify-between bg-medGreen rounded-lg my-2">
+        <div className="inline-block align-middle" id={`mc-question-${question[0]}`}>
+          {question[1]}
+        </div>
+        <div
+          className="text-right flex flex-col"
+          role={`group-${question[0]}`}
+          aria-labelledby={`radio-group-${question[0]}`}
+        >
+          {/* You should group each radio into the same name if you want them to be 
         the options for that value */}
-        <label>
-          Already Do
-          <Field type="radio" name={question[0]} value="do" />
-        </label>
-        <label>
-          Plan to Do
-          <Field type="radio" name={question[0]} value="plan" />
-        </label>
-        <label>
-          Not Interested
-          <Field type="radio" name={question[0]} value="no" />
-        </label>
+          <label>
+            Already Do
+            <Field type="radio" name={question[0]} value="do" />
+          </label>
+          <label>
+            Plan to Do
+            <Field type="radio" name={question[0]} value="plan" />
+          </label>
+          <label>
+            Not Interested
+            <Field type="radio" name={question[0]} value="no" />
+          </label>
+        </div>
       </div>
     </>
   );
@@ -73,10 +81,10 @@ const UserInput: FC<UserInputProps> = () => {
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
-      <p className="py-2 text-sans text-4xl text-center text-yellow">
-        How do you study best{name ? `, ${name}` : ""}?
+      <p className="text-sans text-4xl text-center text-yellow">
+        How do you study best, {AuthUser.displayName}?
       </p>
-      <div className="flex-col flex w-2/5 my-6 mx-auto space-y-4">
+      <div className="flex-col flex w-3/5 my-6 mx-auto space-y-4">
         <Formik initialValues={{}} onSubmit={submitHandler}>
           {({ isSubmitting }) => (
             <Form>
