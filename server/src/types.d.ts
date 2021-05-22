@@ -1,3 +1,6 @@
-import type { Client, types } from "cassandra-driver";
-
-export type DBExec = (client: Client) => Promise<types.ResultSet>;
+interface Course {
+  id: { buffer: Buffer };
+  name: string;
+  user_id: string;
+  colour: string;
+}
