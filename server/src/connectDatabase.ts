@@ -14,6 +14,19 @@ export const insertCourse =
       colour,
     ]);
 
+export const insertNewSettings =
+  (settings: Settings, userId: string): DBExec =>
+  (client) =>
+    client.execute("INSERT INTO studies.settings (user_id, settings) VALUES (?, ?)", [
+      userId,
+      JSON.stringify(settings),
+    ]);
+
+export const getSettings =
+  (userId: string): DBExec =>
+  (client) =>
+    client.execute("SELECT * FROM studies.settings WHERE user_id= ?", [userId]);
+
 export const updateCourse =
   (name: string, colour: string, id: string): DBExec =>
   (client) =>

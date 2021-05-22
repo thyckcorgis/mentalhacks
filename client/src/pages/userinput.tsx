@@ -33,15 +33,15 @@ const Question: FC<Props> = ({ question }) => {
         the options for that value */}
         <label>
           Already Do
-          <Field type="radio" name={question[0]} value="One" />
+          <Field type="radio" name={question[0]} value="do" />
         </label>
         <label>
           Plan to Do
-          <Field type="radio" name={question[0]} value="Two" />
+          <Field type="radio" name={question[0]} value="plan" />
         </label>
         <label>
           Not Interested
-          <Field type="radio" name={question[0]} value="Three" />
+          <Field type="radio" name={question[0]} value="no" />
         </label>
       </div>
     </>
@@ -53,7 +53,18 @@ const UserInput: FC<UserInputProps> = () => {
 
   const submitHandler = async (values: Record<string, string>) => {
     // make http request here
-    alert(JSON.stringify(values, null, 2));
+    console.log(values);
+
+    const token = await AuthUser.getIdToken();
+    const response = await fetch("http://localhost:5000/user", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+        Authorization: token || "unauthenticated",
+      },
+    });
+    alert((await response.json()).message);
 
     Router.push("/dashboard");
   };
@@ -65,18 +76,21 @@ const UserInput: FC<UserInputProps> = () => {
       </p>
       <div className="flex-col flex w-2/5 my-6 mx-auto space-y-4">
         <Formik initialValues={{}} onSubmit={submitHandler}>
-          <Form>
-            {questions.map((question, idx) => (
-              <Question key={idx} question={question} />
-            ))}
-            <div className="flex mx-auto my-6">
-              <Field
-                type="submit"
-                value="Submit"
-                className="flex-grow text-center bg-yellow transition duration-300 ease-in-out transform hover:scale-105 hover:bg-hoverYellow text-medGreen font-sans py-2 px-16 rounded-full"
-              />
-            </div>
-          </Form>
+          {({ isSubmitting }) => (
+            <Form>
+              {questions.map((question, idx) => (
+                <Question key={idx} question={question} />
+              ))}
+              <div className="flex mx-auto my-6">
+                <Field
+                  disabled={isSubmitting}
+                  type="submit"
+                  value="Submit"
+                  className="flex-grow text-center bg-yellow transition duration-300 ease-in-out transform hover:scale-105 hover:bg-hoverYellow text-medGreen font-sans py-2 px-16 rounded-full"
+                />
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </LinearBackground>
