@@ -1,8 +1,9 @@
 import React from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
 import Header from "../components/Header";
-import Button from "../components/Button";
+import LinearBackground from "../components/LinearBackground";
 import DemoPageLinks from "../components/DemoPageLinks";
+import Button from "../components/Button";
 
 const styles = {
   content: {
@@ -16,17 +17,14 @@ const styles = {
 const Demo = () => {
   const AuthUser = useAuthUser();
   return (
-    <div>
+    // <div>
+    <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
       <div style={styles.content}>
-        <p className="text-6xl text-center text-yellow">Study Planner</p>
-        <p>
-          If you remove `getServerSideProps` from this page, it will be static and load the authed
-          user only on the client side.
-        </p>
-        <Button>Poop</Button>
+        <p className="text-sans text-6xl text-center text-yellow">Study Planner</p>
       </div>
-    </div>
+    </LinearBackground>
+    // </div>
   );
 };
 
