@@ -13,6 +13,8 @@ module.exports = {
         courseYellow: "#F9FFA3",
         courseGreen: "#DBFDCB",
         courseBlue: "#CBFDEB",
+        coursePurple: "#EDCBFD",
+        coursePink: "#FDCBE3",
       },
       // fontFamily: {
       //   sans: ["ui-sans-serif", "Nunito"],
