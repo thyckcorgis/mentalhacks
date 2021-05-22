@@ -29,12 +29,18 @@ const Question: FC<Props> = ({ question }) => {
     <>
       <div id={`mc-question-${question[0]}`}>{question[1]}</div>
       <div role={`group-${question[0]}`} aria-labelledby={`radio-group-${question[0]}`}>
-        <label>Already Do</label>
-        <Field type="radio" name={question[0]} value="One" />
-        <label>Plan to Do</label>
-        <Field type="radio" name={question[0]} value="Two" />
-        <label>Not Interested</label>
-        <Field type="radio" name={question[0]} value="Three" />
+        <label>
+          Already Do
+          <Field type="radio" name={question[0]} value="One" />
+        </label>
+        <label>
+          Plan to Do
+          <Field type="radio" name={question[0]} value="Two" />
+        </label>
+        <label>
+          Not Interested
+          <Field type="radio" name={question[0]} value="Three" />
+        </label>
       </div>
     </>
   );
