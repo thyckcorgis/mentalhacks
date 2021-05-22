@@ -23,6 +23,7 @@ const questions = [
   "I take practice exams",
   "I reward myself after a study session",
   "I quiz myself on what I studied regularly",
+  "I like studying in different places",
 ];
 const Question: FC<Props> = ({ questions }) => {
   return (
