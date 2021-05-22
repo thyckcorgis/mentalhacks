@@ -9,7 +9,6 @@ const Demo = () => {
   const AuthUser = useAuthUser();
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
-      {/* <a href="/auth"> */}
       {/* <Header email={AuthUser.email} signOut={AuthUser.signOut} /> */}
       <div className="flex flex-col content-center h-screen">
         <p className="py-12 text-sans text-6xl text-center text-yellow">Study Planner</p>
@@ -21,7 +20,6 @@ const Demo = () => {
           {/* <p className="py-4 opacity-100 text-center text-darkGreen">Click to start.</p> */}
         </a>
       </div>
-      {/* </a> */}
     </LinearBackground>
   );
 };
