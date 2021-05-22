@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const nfaDependencyVersion =
-  require("../../package.json").dependencies["next-firebase-auth"];
+const nfaDependencyVersion = require("../../package.json").dependencies["next-firebase-auth"];
 const nextDependencyVersion = require("../../package.json").dependencies.next;
 
 const styles = {
@@ -24,10 +23,7 @@ const styles = {
 
 const Header = ({ email, signOut }) => (
   <div style={styles.container}>
-    <div style={styles.versionsContainer}>
-      <div>v{nfaDependencyVersion}</div>
-      <div>Next.js v{nextDependencyVersion}</div>
-    </div>
+    <div style={styles.versionsContainer}></div>
     {email ? (
       <>
         <p>Signed in as {email}</p>
