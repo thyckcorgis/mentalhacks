@@ -1,9 +1,13 @@
-import React from "react";
-import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
+import React, { FC } from "react";
+import { useAuthUser, withAuthUser, AuthAction } from "next-firebase-auth";
 import Header from "../components/Header";
 import LinearBackground from "../components/LinearBackground";
 
-const Dashboard = ({ name }) => {
+interface DashboardProps {
+  name: string;
+}
+
+const Dashboard: FC<DashboardProps> = ({ name }) => {
   const AuthUser = useAuthUser();
   return (
     <LinearBackground colours={["from-darkGreen", "to-medGreen"]}>
@@ -15,6 +19,6 @@ const Dashboard = ({ name }) => {
   );
 };
 
-export const getServerSideProps = withAuthUserTokenSSR()();
-
-export default withAuthUser()(Demo);
+export default withAuthUser({
+  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+})(Dashboard);

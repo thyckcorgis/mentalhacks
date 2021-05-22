@@ -6,11 +6,7 @@ import Head from "../public/head.svg";
 
 const Demo = () => {
   const AuthUser = useAuthUser();
-  useEffect(() => {
-    if (AuthUser) {
-      Router.push("/home");
-    }
-  }, []);
+  useEffect(() => {}, []);
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       {/* <Header email={AuthUser.email} signOut={AuthUser.signOut} /> */}
@@ -28,6 +24,16 @@ const Demo = () => {
   );
 };
 
-export const getServerSideProps = withAuthUserTokenSSR()();
+export const getServerSideProps = withAuthUserTokenSSR()(async ({ res, AuthUser }) => {
+  if (AuthUser) {
+    res.writeHead(301, {
+      Location: "/dashboard",
+    });
+    res.end();
+  }
+  return {
+    props: {},
+  };
+});
 
 export default withAuthUser()(Demo);
