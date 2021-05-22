@@ -2,6 +2,42 @@ import React, { FC, useState } from "react";
 import { useAuthUser, withAuthUser, AuthAction, withAuthUserTokenSSR } from "next-firebase-auth";
 import Header from "../components/Header";
 import LinearBackground from "../components/LinearBackground";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import Slider from "react-slick";
+
+const Slick = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  return (
+    <Slider {...settings}>
+      <div>
+        <h3>1</h3>
+      </div>
+      <div>
+        <h3>2</h3>
+      </div>
+      <div>
+        <h3>3</h3>
+      </div>
+      <div>
+        <h3>4</h3>
+      </div>
+      <div>
+        <h3>5</h3>
+      </div>
+      <div>
+        <h3>6</h3>
+      </div>
+    </Slider>
+  );
+};
 
 interface DashboardProps {
   name: string;
@@ -45,7 +81,7 @@ const All: FC = () => {
 };
 
 const Exams: FC = () => {
-  return <div>Exams</div>;
+  return <Slick />;
 };
 
 const Assignments: FC = () => {
