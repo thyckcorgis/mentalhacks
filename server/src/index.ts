@@ -15,7 +15,7 @@ async function main() {
   const client = await connect();
   app.post("/user", async (req, res) => {
     try {
-      const token = req.headers["authorization"];
+      const token = req.headers.authorization;
       const user = await getUser(token as string);
       const settings = req.body as Settings;
       await insertNewSettings(settings, user.uid)(client);
@@ -29,7 +29,7 @@ async function main() {
 
   app.get("/", async (req, res) => {
     try {
-      const token = req.headers["authorization"];
+      const token = req.headers.authorization;
       const user = await getUser(token as string);
       const settings = (await getRows(client, getSettings(user.uid)))[0] as unknown as SettingRow;
 
