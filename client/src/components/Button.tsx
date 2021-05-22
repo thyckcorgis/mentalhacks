@@ -5,7 +5,7 @@ interface ButtonProps {
 }
 const Button: FC<ButtonProps> = ({ children, href }) => (
   <a
-    className="bg-yellow hover:bg-hoverYellow text-medGreen font-sans py-2 px-16 rounded-full"
+    className="flex-grow bg-yellow hover:bg-hoverYellow text-medGreen font-sans py-2 px-16 rounded-full"
     href={href}
   >
     {children}
