@@ -3,7 +3,6 @@ import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-a
 import Header from "../components/Header";
 import LinearBackground from "../components/LinearBackground";
 import Head from "../public/head.svg";
-import Button from "../components/Button";
 
 const Demo = () => {
   const AuthUser = useAuthUser();
