@@ -8,7 +8,7 @@ const Demo = () => {
   const AuthUser = useAuthUser();
   useEffect(() => {
     if (AuthUser) {
-      Router.push("/ssr-auth-required");
+      Router.push("/home");
     }
   }, []);
   return (
