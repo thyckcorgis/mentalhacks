@@ -76,6 +76,8 @@ const UserInput: FC<UserInputProps> = () => {
 
     Router.push("/dashboard");
   };
+
+  const name = AuthUser.displayName ? AuthUser.displayName.split(" ")[0] : "";
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
