@@ -56,15 +56,23 @@ const Dashboard: FC<DashboardProps> = ({ name }) => {
   return (
     <LinearBackground colours={["from-darkGreen", "to-medGreen"]}>
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
-      <div className="flex flex-col content-center h-screen">
-        <p className="py-12 text-sans text-xl text-center text-yellow">Welcome, {name}</p>
-        <div>
+      <div className="flex flex-col h-4/5 content-center">
+        <p className="py-2 text-sans text-4xl text-center text-yellow">Welcome, {name}</p>
+        <div className="mx-auto">
           {tabs.map(([name, tab]) => (
-            <button onClick={() => changeTab(tab)}>{name}</button>
+            <button
+              className={`rounded-t-lg px-10 py-2 bg-medGreen opacity-70 focus:outline-none focus:opacity-100 ${
+                tab === currentTab ? "opacity-100" : "opacity-70"
+              }`}
+              onClick={() => changeTab(tab)}
+            >
+              {name}
+            </button>
           ))}
         </div>
-
-        <CurrentTab currentTab={currentTab} />
+        <div className="h-full w-4/5 bg-gradient-to-b from-medGreen rounded-lg mx-auto ">
+          <CurrentTab currentTab={currentTab} />
+        </div>
       </div>
     </LinearBackground>
   );
