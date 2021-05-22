@@ -17,14 +17,13 @@ const styles = {
 const Demo = () => {
   const AuthUser = useAuthUser();
   return (
-    // <div>
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
-      <Header email={AuthUser.email} signOut={AuthUser.signOut} />
-      <div style={styles.content}>
+      {/* <Header email={AuthUser.email} signOut={AuthUser.signOut} /> */}
+      <div className="justify-items-center">
         <p className="text-sans text-6xl text-center text-yellow">Study Planner</p>
+        <Button href="/auth">Sign in</Button>
       </div>
     </LinearBackground>
-    // </div>
   );
 };
 

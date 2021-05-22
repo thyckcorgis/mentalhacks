@@ -1,15 +1,15 @@
 import React, { FC } from "react";
 
 interface ButtonProps {
-  buttonAction: () => void;
+  href: string;
 }
-const Button: FC<ButtonProps> = ({ children, buttonAction }) => (
-  <button
+const Button: FC<ButtonProps> = ({ children, href }) => (
+  <a
     className="bg-yellow hover:bg-hoverYellow text-medGreen font-sans py-2 px-16 rounded-full"
-    onClick={buttonAction}
+    href={href}
   >
     {children}
-  </button>
+  </a>
 );
 
 export default Button;
