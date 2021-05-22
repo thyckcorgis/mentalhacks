@@ -1,11 +1,4 @@
-import {
-  connect,
-  getRows,
-  getCourses,
-  updateCourse,
-  insertCourse,
-  getCourse,
-} from "./connectDatabase";
+import { connect, getRows, getCourses, getCourse } from "../database";
 
 async function main() {
   const client = await connect();

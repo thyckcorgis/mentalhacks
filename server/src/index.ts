@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import { getUser } from "./firebase";
-import { connect, getRows, getSettings, insertNewSettings } from "./connectDatabase";
+import { connect, getRows, getSettings, insertNewSettings } from "./database";
 
 const app = express();
 

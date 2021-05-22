@@ -1,5 +1,5 @@
 import { Client } from "cassandra-driver";
-import { connect } from "./connectDatabase";
+import { connect } from "../database";
 
 export const addColumn = (client: Client) =>
   client.execute("ALTER TABLE studies.courses ADD colour text");
