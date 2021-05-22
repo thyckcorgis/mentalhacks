@@ -5,48 +5,41 @@ import LinearBackground from "../components/LinearBackground";
 import Header from "../components/Header";
 import Button from "../components/Button";
 
-interface UserInputProps {
-  questions: string[];
-}
+interface UserInputProps {}
+type QuestionRow = [label: string, question: string];
 
 interface Props {
-  questions: string;
+  question: QuestionRow;
 }
-const questions = [
-  "I study every day",
-  "I turn off the phone when studying",
-  "I take regular breaks, like every 30 minutes",
-  "I like to study weeks in advance",
-  "I study the hardest things first, then the easier ones",
-  "I take review notes as I study, using my own words",
-  "I look at my notes regularly",
-  "I take practice exams",
-  "I reward myself after a study session",
-  "I quiz myself on what I studied regularly",
+const questions: QuestionRow[] = [
+  ["everyday", "I study every day"],
+  ["no-phone", "I turn off the phone when studying"],
+  ["breaks", "I take regular breaks, like every 30 minutes"],
+  ["advance", "I like to study weeks in advance"],
+  ["hard-first", "I study the hardest things first, then the easier ones"],
+  ["write-notes", "I take review notes as I study, using my own words"],
+  ["read-notes", "I look at my notes regularly"],
+  ["practice", "I take practice exams"],
+  ["reward", "I reward myself after a study session"],
+  ["quiz", "I quiz myself on what I studied regularly"],
 ];
-const Question: FC<Props> = ({ questions }) => {
+const Question: FC<Props> = ({ question }) => {
   return (
-    <Form>
-      <div id="mc-question">{questions}</div>
-      <div role="group" aria-labelledby="my-radio-group">
-        <label>
-          <Field type="radio" name="picked" value="One" />
-          Already Do
-        </label>
-        <label>
-          <Field type="radio" name="picked" value="Two" />
-          Plan to Do
-        </label>
-        <label>
-          <Field type="radio" name="picked" value="Two" />
-          Not Interested
-        </label>
+    <>
+      <div id={`mc-question-${question[0]}`}>{question[1]}</div>
+      <div role={`group-${question[0]}`} aria-labelledby={`radio-group-${question[0]}`}>
+        <label>Already Do</label>
+        <Field type="radio" name={question[0]} value="One" />
+        <label>Plan to Do</label>
+        <Field type="radio" name={question[0]} value="Two" />
+        <label>Not Interested</label>
+        <Field type="radio" name={question[0]} value="Three" />
       </div>
-    </Form>
+    </>
   );
 };
 
-const UserInput: FC<UserInputProps> = ({ questions }) => {
+const UserInput: FC<UserInputProps> = () => {
   const AuthUser = useAuthUser();
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
@@ -64,9 +57,11 @@ const UserInput: FC<UserInputProps> = ({ questions }) => {
             alert(JSON.stringify(values, null, 2));
           }}
         >
-          {questions.map((question, idx) => (
-            <Question questions={question} />
-          ))}
+          <Form>
+            {questions.map((question, idx) => (
+              <Question key={idx} question={question} />
+            ))}
+          </Form>
         </Formik>
         <div className="flex mx-auto my-6">
           <Button href="/dashboard">Done</Button>
