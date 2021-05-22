@@ -3,22 +3,22 @@ import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-a
 import Header from "../components/Header";
 import LinearBackground from "../components/LinearBackground";
 import Head from "../public/head.svg";
-import Button from "../components/Button";
 
 const Demo = () => {
   const AuthUser = useAuthUser();
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
-      <a href="/auth">
-        {/* <Header email={AuthUser.email} signOut={AuthUser.signOut} /> */}
-        <div className="flex flex-col content-center h-screen">
-          <p className="py-12 text-sans text-6xl text-center text-yellow">Study Planner</p>
-          <div className="flex justify-center">
-            <Head />
-          </div>
-          <p className="text-center text-medGreen">Click anywhere to start.</p>
-        </div>
-      </a>
+      {/* <Header email={AuthUser.email} signOut={AuthUser.signOut} /> */}
+      <div className="flex flex-col content-center h-screen">
+        <p className="py-12 text-sans text-6xl text-center text-yellow">Study Planner</p>
+        <a
+          href="/auth"
+          className="mx-auto flex-col transition duration-300 ease-in-out transform hover:scale-105 justify-items-center"
+        >
+          <Head />
+          {/* <p className="py-4 opacity-100 text-center text-darkGreen">Click to start.</p> */}
+        </a>
+      </div>
     </LinearBackground>
   );
 };
