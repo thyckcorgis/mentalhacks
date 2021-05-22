@@ -8,7 +8,7 @@ const Home: FC = () => {
   const AuthUser = useAuthUser();
   useEffect(() => {
     if (AuthUser.id) Router.push("/dashboard");
-  }, []);
+  }, [AuthUser]);
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       {/* <Header email={AuthUser.email} signOut={AuthUser.signOut} /> */}
