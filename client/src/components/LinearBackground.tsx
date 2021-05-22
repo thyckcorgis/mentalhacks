@@ -5,7 +5,7 @@ interface LinearBackgroundProps {
 }
 
 const LinearBackground: FC<LinearBackgroundProps> = ({ children, colours }) => (
-  <div className={`bg-gradient-to-b h-screen ${colours[0]} ${colours[1]}`}>{children}</div>
+  <div className={`bg-fixed bg-gradient-to-b h-full ${colours[0]} ${colours[1]}`}>{children}</div>
 );
 
 export default LinearBackground;
