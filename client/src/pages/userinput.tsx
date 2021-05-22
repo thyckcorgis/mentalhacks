@@ -22,6 +22,7 @@ const questions: QuestionRow[] = [
   ["practice", "I take practice exams"],
   ["reward", "I reward myself after a study session"],
   ["quiz", "I quiz myself on what I studied regularly"],
+  ["different-place", "I like studying in different places"],
 ];
 const Question: FC<Props> = ({ question }) => {
   return (
