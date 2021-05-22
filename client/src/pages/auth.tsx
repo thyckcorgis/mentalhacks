@@ -2,10 +2,16 @@ import React from "react";
 import { withAuthUser, AuthAction } from "next-firebase-auth";
 import FirebaseAuth from "../components/FirebaseAuth";
 import LinearBackground from "../components/LinearBackground";
+import Head from "../public/head.svg";
 
 const styles = {
   content: {
     padding: `100px 32px`,
+    height: "100vh",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignContent: "center",
   },
   textContainer: {
     display: "flex",
@@ -23,6 +29,9 @@ const Auth = () => (
       <div>
         <FirebaseAuth />
       </div>
+      {/* <div className="mx-auto flex flex-col">
+        <Head />
+      </div> */}
     </div>
   </LinearBackground>
 );
