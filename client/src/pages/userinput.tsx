@@ -68,11 +68,13 @@ const UserInput: FC<UserInputProps> = () => {
 
     Router.push("/dashboard");
   };
+
+  const name = AuthUser.displayName ? AuthUser.displayName.split(" ")[0] : "";
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
       <p className="py-2 text-sans text-4xl text-center text-yellow">
-        How do you study best, {AuthUser.displayName}?
+        How do you study best{name ? `, ${name}` : ""}?
       </p>
       <div className="flex-col flex w-2/5 my-6 mx-auto space-y-4">
         <Formik initialValues={{}} onSubmit={submitHandler}>
