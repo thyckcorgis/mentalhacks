@@ -64,6 +64,7 @@ const Dashboard: FC<DashboardProps> = ({ name }) => {
               className={`rounded-t-lg px-10 py-2 bg-medGreen opacity-70 focus:outline-none focus:opacity-100 ${
                 tab === currentTab ? "opacity-100" : "opacity-70"
               }`}
+              key={`${name}-${tab}`}
               onClick={() => changeTab(tab)}
             >
               {name}
