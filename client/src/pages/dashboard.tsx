@@ -13,8 +13,35 @@ enum Tab {
   ASSES,
 }
 
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+interface WeekRowProps {
+  start: number;
+}
+
+const WeekRow: FC<WeekRowProps> = ({ start }) => {
+  return (
+    <div className="flex space-x-4">
+      {days.map((day, idx) => (
+        <div key={`${start + idx}-${day}`}>
+          <h1>
+            {day} {start + idx}
+          </h1>
+          <div>Stuff</div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const All: FC = () => {
-  return <div>All things</div>;
+  return (
+    <div className="space-y-4">
+      <WeekRow start={1} />
+      <WeekRow start={8} />
+      <WeekRow start={15} />
+    </div>
+  );
 };
 
 const Exams: FC = () => {
