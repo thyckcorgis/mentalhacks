@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
-import Router from "next/router";
 import LinearBackground from "../components/LinearBackground";
 import Head from "../public/head.svg";
+import Router from "next/router";
 
-const Demo = () => {
+const Home: FC = () => {
   const AuthUser = useAuthUser();
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (AuthUser) Router.push("/dashboard");
+  }, []);
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       {/* <Header email={AuthUser.email} signOut={AuthUser.signOut} /> */}
@@ -24,16 +26,4 @@ const Demo = () => {
   );
 };
 
-export const getServerSideProps = withAuthUserTokenSSR()(async ({ res, AuthUser }) => {
-  if (AuthUser) {
-    res.writeHead(301, {
-      Location: "/dashboard",
-    });
-    res.end();
-  }
-  return {
-    props: {},
-  };
-});
-
-export default withAuthUser()(Demo);
+export default withAuthUser()(Home);
