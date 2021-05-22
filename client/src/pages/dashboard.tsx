@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useAuthUser, withAuthUser, AuthAction } from "next-firebase-auth";
+import { useAuthUser, withAuthUser, AuthAction, withAuthUserTokenSSR } from "next-firebase-auth";
 import Header from "../components/Header";
 import LinearBackground from "../components/LinearBackground";
 
@@ -18,6 +18,16 @@ const Dashboard: FC<DashboardProps> = ({ name }) => {
     </LinearBackground>
   );
 };
+
+export const getServerSideProps = withAuthUserTokenSSR({
+  whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
+})(async ({ AuthUser }) => {
+  return {
+    props: {
+      name: AuthUser.displayName,
+    },
+  };
+});
 
 export default withAuthUser({
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
