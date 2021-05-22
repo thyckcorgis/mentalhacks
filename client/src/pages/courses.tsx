@@ -9,12 +9,12 @@ interface CourseProps {
 }
 
 const colours = [
-  ["Red", "bg-red-600"],
-  ["Blue", "bg-blue-600"],
-  ["Green", "bg-green-600"],
-  ["Yellow", "bg-yellow"],
-  ["Pink", "bg-pink-500"],
-  ["Indigo", "bg-indigo-500"],
+  ["Red", "bg-courseRed"],
+  ["Blue", "bg-courseBlue"],
+  ["Green", "bg-courseGreen"],
+  ["Yellow", "bg-courseYellow"],
+  ["Pink", "bg-courseRed"],
+  ["Purple", "bg-coursePurple"],
 ];
 
 interface Props {
@@ -24,9 +24,16 @@ interface Props {
 const Course: FC<Props> = ({ name, colour }) => {
   const [colourIdx, setColourIdx] = useState(colour % colours.length);
   return (
-    <div className={`flex flex-col ${colours[colourIdx][1]}`}>
+    <div
+      className={`text-medGreen flex px-4 py-2 rounded-lg flex-1 justify-between ${colours[colourIdx][1]}`}
+    >
       {name}
-      <button onClick={() => setColourIdx((colourIdx + 1) % colours.length)}>Change Colour</button>
+      <button
+        className="text-medGreen border border-transparent rounded-full shadow opacity-100 focus:outline-none transition duration-300 ease-in-out transform hover:scale-105"
+        onClick={() => setColourIdx((colourIdx + 1) % colours.length)}
+      >
+        Change Colour
+      </button>
     </div>
   );
 };
@@ -35,18 +42,19 @@ const Courses: FC<CourseProps> = ({ courses }) => {
   const AuthUser = useAuthUser();
 
   return (
-    <LinearBackground colours={["from-darkGreen", "to-medGreen"]}>
+    <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
       <div className="flex flex-col h-4/5 content-center">
         <p className="py-2 text-sans text-4xl text-center text-yellow">
-          Welcome, {AuthUser.displayName}
+          Are these your courses, {AuthUser.displayName}?
         </p>
-        <div className="h-full w-4/5 bg-gradient-to-b from-medGreen rounded-lg mx-auto ">
-          <p>Are these your courses?</p>
+        <div className="flex-col flex w-2/5 my-6 mx-auto space-y-4">
           {courses.map((course, idx) => (
             <Course key={`${course}-${idx}`} name={course} colour={idx} />
           ))}
-          <Button href="/dashboard">Confirm</Button>
+          <div className="flex mx-auto my-6">
+            <Button href="/dashboard">Confirm</Button>
+          </div>
         </div>
       </div>
     </LinearBackground>
