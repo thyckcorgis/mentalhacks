@@ -25,6 +25,7 @@ const Header = ({ email, signOut }) => (
       <>
         <p>Signed in as {email}</p>
         <button
+          className="bg-yellow px-2 py-1 rounded-full"
           type="button"
           onClick={() => {
             signOut();
