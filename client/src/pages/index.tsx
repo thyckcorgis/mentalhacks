@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuthUser, withAuthUser, withAuthUserTokenSSR } from "next-firebase-auth";
-import Header from "../components/Header";
+import Router from "next/router";
 import LinearBackground from "../components/LinearBackground";
 import Head from "../public/head.svg";
 
 const Demo = () => {
   const AuthUser = useAuthUser();
+  useEffect(() => {
+    if (AuthUser) {
+      Router.push("/ssr-auth-required");
+    }
+  }, []);
   return (
     <LinearBackground colours={["from-medGreen", "to-yellow"]}>
       {/* <Header email={AuthUser.email} signOut={AuthUser.signOut} /> */}
