@@ -1,13 +1,21 @@
 import { Client } from "cassandra-driver";
+import type { DBExec } from "./types";
 
 import { SECURE_CONNECT_PATH, CLIENT_ID, CLIENT_SECRET } from "./config";
 
-const insert = (client: Client) =>
-  client.execute(
-    "INSERT INTO studies.course (name, user_id) VALUES('ECE 420', 'GHmhA4vbEugYymJ7k97I13H4jiU2')"
-  );
+export const insert =
+  (name: string, userId: string): DBExec =>
+  (client) =>
+    client.execute(`INSERT INTO studies.course (name, user_id) VALUES(${name}, ${userId})`);
 
-async function run() {
+export const getCourses: DBExec = (client) => client.execute("SELECT * from studies.course");
+
+export const getRows = async (client: Client, fn: DBExec) => {
+  const rs = await fn(client);
+  return rs.rows;
+};
+
+export async function connect() {
   const client = new Client({
     cloud: {
       secureConnectBundle: SECURE_CONNECT_PATH,
@@ -19,12 +27,7 @@ async function run() {
   });
 
   await client.connect();
-
-  const rs = await client.execute("SELECT * from studies.course");
-  console.log(rs.rows);
-  console.log(`Your cluster returned ${rs.rowLength} row(s)`);
-
-  await client.shutdown();
+  return client;
 }
 
-run();
+export const close = (client: Client) => client.shutdown();
