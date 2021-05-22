@@ -4,9 +4,11 @@ import type { DBExec } from "./types";
 import { SECURE_CONNECT_PATH, CLIENT_ID, CLIENT_SECRET } from "./config";
 
 export const insert =
-  (name: string, userId: string): DBExec =>
+  (name: string, userId: string, colour: string): DBExec =>
   (client) =>
-    client.execute(`INSERT INTO studies.course (name, user_id) VALUES(${name}, ${userId})`);
+    client.execute(
+      `INSERT INTO studies.course (name, user_id, colour) VALUES(${name}, ${userId}, ${colour})`
+    );
 
 export const getCourses: DBExec = (client) => client.execute("SELECT * from studies.course");
 
@@ -29,5 +31,3 @@ export async function connect() {
   await client.connect();
   return client;
 }
-
-export const close = (client: Client) => client.shutdown();
