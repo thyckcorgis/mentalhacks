@@ -71,17 +71,19 @@ const WeekRow: FC<WeekRowProps> = ({ start }) => {
 };
 
 const All: FC = () => {
-  return (
-    <div className="space-y-4">
-      <WeekRow start={1} />
-      <WeekRow start={8} />
-      <WeekRow start={15} />
-    </div>
-  );
+  // return (
+  //   // <div className="space-y-4">
+  //   //   <WeekRow start={1} />
+  //   //   <WeekRow start={8} />
+  //   //   <WeekRow start={15} />
+  //   // </div>
+  // );
+  return <div>All</div>;
 };
 
 const Exams: FC = () => {
-  return <Slick />;
+  // return <Slick />;
+  return <div>Exams</div>;
 };
 
 const Assignments: FC = () => {
@@ -118,7 +120,7 @@ const Dashboard: FC<DashboardProps> = ({ name }) => {
   };
   return (
     <LinearBackground colours={["from-darkGreen", "to-medGreen"]}>
-      <div className="h-screen">
+      <div className="flex flex-col h-screen">
         <Header email={AuthUser.email} signOut={AuthUser.signOut} />
         <div className="flex flex-col content-center">
           <p className="py-2 text-sans text-4xl text-center text-yellow">Welcome, {name}</p>
@@ -135,7 +137,7 @@ const Dashboard: FC<DashboardProps> = ({ name }) => {
               </button>
             ))}
           </div>
-          <div className="h-full w-4/5 bg-gradient-to-b from-medGreen rounded-lg mx-auto ">
+          <div className="flex h-80 w-4/5 bg-gradient-to-b from-medGreen rounded-lg mx-auto ">
             <CurrentTab currentTab={currentTab} />
           </div>
         </div>
