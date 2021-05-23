@@ -27,12 +27,12 @@ const questions: QuestionRow[] = [
 const Question: FC<Props> = ({ question }) => {
   return (
     <>
-      <div className="flex content-center justify-between bg-medGreen rounded-lg my-2">
-        <div className="inline-block align-middle" id={`mc-question-${question[0]}`}>
+      <div className="flex content-center justify-between bg-medGreen rounded-lg my-2 py-2 px-4">
+        <div className="content-center text-yellow text-xl" id={`mc-question-${question[0]}`}>
           {question[1]}
         </div>
         <div
-          className="text-right flex flex-col"
+          className="text-right text-yellow flex flex-col"
           role={`group-${question[0]}`}
           aria-labelledby={`radio-group-${question[0]}`}
         >
@@ -84,7 +84,7 @@ const UserInput: FC<UserInputProps> = () => {
       <p className="text-sans my-6 text-4xl text-center text-yellow">
         How do you study best, {AuthUser.displayName}?
       </p>
-      <div className="flex-col flex w-3/5 mx-auto space-y-4">
+      <div className="flex-col flex w-3/6 mx-auto space-y-4">
         <Formik initialValues={{}} onSubmit={submitHandler}>
           {({ isSubmitting }) => (
             <Form>
