@@ -48,7 +48,7 @@ async function authorize(credentials: Credentials) {
 function getAccessToken(oAuth2Client: Auth.OAuth2Client) {
   return new Promise<Auth.OAuth2Client>((res, rej) => {
     const authUrl = oAuth2Client.generateAuthUrl({
-      access_type: "online",
+      access_type: "offline",
       scope: SCOPES,
     });
     console.log("Authorize this app by visiting this url:", authUrl);
@@ -77,18 +77,36 @@ function getAccessToken(oAuth2Client: Auth.OAuth2Client) {
  */
 function listEvents(auth: Auth.OAuth2Client) {
   const calendar = google.calendar({ version: "v3", auth });
+  calendar.freebusy.query(
+    {
+      requestBody: {
+        timeMin: new Date().toISOString(),
+        timeMax: new Date("6/3/2021").toISOString(),
+        items: [
+          {
+            id: "primary",
+          },
+        ],
+      },
+      auth,
+    },
+    (err, res) => {
+      if (err) return console.log("The API returned an error: " + err);
+      console.log(JSON.stringify(res?.data.calendars, null, 2));
+    }
+  );
   calendar.events.list(
     {
       calendarId: "primary",
       timeMin: new Date().toISOString(),
-      maxResults: 10,
+      timeMax: new Date("6/3/2021").toISOString(),
+      // maxResults: 10,
       singleEvents: true,
       orderBy: "startTime",
     },
     (err, res) => {
       if (err) return console.log("The API returned an error: " + err);
-      if (!res) return;
-      const events = res.data.items;
+      const events = res?.data.items;
       if (!events) return;
       if (events.length) {
         console.log("Upcoming 10 events:");
