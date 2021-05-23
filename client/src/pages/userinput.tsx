@@ -79,12 +79,12 @@ const UserInput: FC<UserInputProps> = () => {
 
   const name = AuthUser.displayName ? AuthUser.displayName.split(" ")[0] : "";
   return (
-    <LinearBackground colours={["from-medGreen", "to-yellow"]}>
+    <LinearBackground colours={["from-darkGreen", "to-medGreen"]}>
       <Header email={AuthUser.email} signOut={AuthUser.signOut} />
-      <p className="text-sans text-4xl text-center text-yellow">
+      <p className="text-sans my-6 text-4xl text-center text-yellow">
         How do you study best, {AuthUser.displayName}?
       </p>
-      <div className="flex-col flex w-3/5 my-6 mx-auto space-y-4">
+      <div className="flex-col flex w-3/5 mx-auto space-y-4">
         <Formik initialValues={{}} onSubmit={submitHandler}>
           {({ isSubmitting }) => (
             <Form>
